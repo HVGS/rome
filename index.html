@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f8f8f8;
         }
 
         header {
@@ -22,37 +23,51 @@
             padding: 20px;
         }
 
-        section {
-            margin-bottom: 40px;
+        .timeline {
+            position: relative;
+            overflow: hidden;
+            padding-left: 100px; /* Width of the timeline ruler */
         }
 
-        .popup {
-            display: none;
-            position: fixed;
+        .timeline-ruler {
+            position: absolute;
             top: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+            width: 100px; /* Width of the timeline ruler */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
-        .popup-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            max-width: 80%;
+        .ruler-year {
+            font-size: 14px;
         }
 
-        .popup h2 {
+        .events {
+            position: relative;
+        }
+
+        .event {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: calc(100% - 100px); /* Width of the timeline minus the width of the ruler */
+            padding-left: 20px;
+            margin-right: 20px;
+            border-left: 2px solid #333; /* Connect events to the timeline */
+            margin-top: 20px;
+            padding-top: 20px;
+        }
+
+        .event h3 {
             margin-top: 0;
+            margin-bottom: 5px;
         }
 
-        .popup p {
-            margin-bottom: 10px;
+        .event p {
+            margin-top: 0;
         }
 
         .popup-link {
@@ -71,55 +86,38 @@
         <h1>Rome History Study Guide</h1>
     </header>
     <main>
-        <section id="timeline">
-            <h2>Rome Timeline</h2>
-            <p>Explore the timeline of Rome's history from its legendary founding to the fall of the Roman Empire.</p>
-            <p>Learn more <a href="#" class="popup-link" data-popup="timeline-popup">here</a>.</p>
-        </section>
-        <section id="emperors">
-            <h2>Roman Emperors</h2>
-            <p>Discover the notable emperors who shaped the course of Roman history.</p>
-            <p>Learn more <a href="#" class="popup-link" data-popup="emperors-popup">here</a>.</p>
-        </section>
+        <div class="timeline">
+            <div class="timeline-ruler">
+                <div class="ruler-year">753 BC</div>
+                <div class="ruler-year">500 BC</div>
+                <div class="ruler-year">250 BC</div>
+                <div class="ruler-year">1 AD</div>
+                <div class="ruler-year">250 AD</div>
+                <div class="ruler-year">500 AD</div>
+            </div>
+            <div class="events">
+                <div class="event">
+                    <h3>Regal Period</h3>
+                    <p>753 BC - 509 BC</p>
+                    <p>Rome was founded in 753 BC by Romulus and Remus. It was ruled by seven kings during this period.</p>
+                </div>
+                <div class="event">
+                    <h3>Republican Period</h3>
+                    <p>509 BC - 27 BC</p>
+                    <p>Rome transitioned from a monarchy to a republic during this period. Notable events include the Punic Wars and the rise of Julius Caesar.</p>
+                </div>
+                <div class="event">
+                    <h3>Imperial Period</h3>
+                    <p>27 BC - 476 AD</p>
+                    <p>Octavian, later known as Augustus, became the first Roman Emperor in 27 BC, marking the beginning of the Imperial period. It ended with the fall of the Western Roman Empire in 476 AD.</p>
+                </div>
+                <!-- Add more events as needed -->
+            </div>
+        </div>
     </main>
 
-    <!-- Popups -->
-    <div id="timeline-popup" class="popup">
-        <div class="popup-content">
-            <h2>Rome Timeline</h2>
-            <p>Rome's history spans over 2,800 years, from its legendary founding in 753 BC by Romulus to the fall of the Western Roman Empire in 476 AD.</p>
-            <p>Click anywhere to close.</p>
-        </div>
-    </div>
-
-    <div id="emperors-popup" class="popup">
-        <div class="popup-content">
-            <h2>Roman Emperors</h2>
-            <p>Roman emperors wielded immense power and influence over the empire. Explore the lives and legacies of figures like Julius Caesar, Augustus, Nero, and more.</p>
-            <p>Click anywhere to close.</p>
-        </div>
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const popupLinks = document.querySelectorAll('.popup-link');
-            const popups = document.querySelectorAll('.popup');
-
-            popupLinks.forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const popupId = this.getAttribute('data-popup');
-                    const popup = document.getElementById(popupId);
-                    popup.style.display = 'flex';
-                });
-            });
-
-            popups.forEach(function(popup) {
-                popup.addEventListener('click', function() {
-                    this.style.display = 'none';
-                });
-            });
-        });
+        // Add JavaScript for popups if needed
     </script>
 </body>
 </html>
